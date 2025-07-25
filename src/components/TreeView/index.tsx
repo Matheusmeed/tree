@@ -7,9 +7,14 @@ import ReactFlow, {
 } from 'react-flow-renderer';
 import dagre from 'dagre';
 import { Container } from './styles';
+import CustomNode from '../CustomNode';
 
-const nodeWidth = 150;
-const nodeHeight = 50;
+const nodeTypes = {
+  custom: CustomNode,
+};
+
+const nodeWidth = 160;
+const nodeHeight = 130;
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -48,6 +53,7 @@ const TreeView = () => {
         id: item.id,
         data: { label: item.label },
         position: { x: 0, y: 0 },
+        type: 'custom',
       });
     });
 
@@ -66,6 +72,7 @@ const TreeView = () => {
       <ReactFlow
         nodes={nodes}
         edges={edges}
+        nodeTypes={nodeTypes} // aqui
         fitView
         nodesDraggable={false}
         nodesConnectable={false}

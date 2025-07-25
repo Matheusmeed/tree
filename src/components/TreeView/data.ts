@@ -1,3 +1,9 @@
+export interface ITreeData {
+  id: string;
+  label: string;
+  parent: string | null;
+}
+
 export const treeData = [
   { id: '1', label: 'Father', parent: null },
   { id: '2', label: 'Child 1', parent: '1' },
