@@ -81,7 +81,13 @@ const TreeView = () => {
         zoomOnScroll={false}
         panOnScroll
       >
-        <MiniMap />
+        <MiniMap
+          nodeColor='#5d5d5d'
+          nodeStrokeColor='#5d5d5d'
+          nodeBorderRadius={8}
+          maskColor='rgba(255, 255, 255, 0.1)'
+          style={{ background: '#00000062' }}
+        />
         <Background />
         <Controls />
       </ReactFlow>
