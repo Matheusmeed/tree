@@ -4,6 +4,7 @@ import ReactFlow, {
   Controls,
   type Node,
   type Edge,
+  MiniMap,
 } from 'react-flow-renderer';
 import dagre from 'dagre';
 import { Container } from './styles';
@@ -72,7 +73,7 @@ const TreeView = () => {
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        nodeTypes={nodeTypes} // aqui
+        nodeTypes={nodeTypes}
         fitView
         nodesDraggable={false}
         nodesConnectable={false}
@@ -80,6 +81,7 @@ const TreeView = () => {
         zoomOnScroll={false}
         panOnScroll
       >
+        <MiniMap />
         <Background />
         <Controls />
       </ReactFlow>
