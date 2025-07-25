@@ -88,7 +88,7 @@ const TreeView = () => {
           maskColor='rgba(255, 255, 255, 0.1)'
           style={{ background: '#00000062' }}
         />
-        <Background />
+        <Background color='#272726' gap={20} size={1.5} />
         <Controls />
       </ReactFlow>
     </Container>
