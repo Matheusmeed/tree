@@ -88,7 +88,7 @@ const TreeView = () => {
           style={{ background: '#00000062' }}
         />
         <Background color='#272726' gap={20} size={1} />
-        <Controls />
+        <Controls showInteractive={false} />
       </ReactFlow>
     </Container>
   );
