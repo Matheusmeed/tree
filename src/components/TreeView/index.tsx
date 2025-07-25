@@ -19,7 +19,7 @@ const nodeHeight = 130;
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
-dagreGraph.setGraph({ rankdir: 'TB' }); // Top to Bottom
+dagreGraph.setGraph({ rankdir: 'TB' });
 
 const treeData = [
   { id: '1', label: 'Father', parent: null },
@@ -47,6 +47,7 @@ const TreeView = () => {
           source: item.parent,
           target: item.id,
           animated: false,
+          style: { stroke: '#464646' },
         });
       }
 
@@ -78,8 +79,6 @@ const TreeView = () => {
         nodesDraggable={false}
         nodesConnectable={false}
         elementsSelectable={false}
-        zoomOnScroll={false}
-        panOnScroll
       >
         <MiniMap
           nodeColor='#5d5d5d'
@@ -88,7 +87,7 @@ const TreeView = () => {
           maskColor='rgba(255, 255, 255, 0.1)'
           style={{ background: '#00000062' }}
         />
-        <Background color='#272726' gap={20} size={1.5} />
+        <Background color='#272726' gap={20} size={1} />
         <Controls />
       </ReactFlow>
     </Container>
