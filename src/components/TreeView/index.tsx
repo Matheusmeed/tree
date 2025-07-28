@@ -1,28 +1,26 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import ReactFlow, {
   Background,
-  Controls,
+  MiniMap,
   type Node,
   type Edge,
-  MiniMap,
+  type ReactFlowInstance,
 } from 'react-flow-renderer';
 import dagre from 'dagre';
-import { Container } from './styles';
+import { ButtonsDiv, Container } from './styles';
 import CustomNode from '../CustomNode';
 import { treeData } from './data';
 
-const nodeTypes = {
-  custom: CustomNode,
-};
-
+const nodeTypes = { custom: CustomNode };
 const nodeWidth = 160;
 const nodeHeight = 130;
-
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
 dagreGraph.setGraph({ rankdir: 'TB' });
 
 const TreeView = () => {
+  const [rfInstance, setRfInstance] = useState<ReactFlowInstance | null>(null);
+
   const { nodes, edges } = useMemo(() => {
     const nodes: Node[] = [];
     const edges: Edge[] = [];
@@ -52,7 +50,6 @@ const TreeView = () => {
     });
 
     dagre.layout(dagreGraph);
-
     nodes.forEach((node) => {
       const pos = dagreGraph.node(node.id);
       node.position = { x: pos.x - nodeWidth / 2, y: pos.y - nodeHeight / 2 };
@@ -68,6 +65,7 @@ const TreeView = () => {
         edges={edges}
         nodeTypes={nodeTypes}
         fitView
+        onInit={setRfInstance}
         nodesDraggable={false}
         nodesConnectable={false}
         elementsSelectable={false}
@@ -80,7 +78,11 @@ const TreeView = () => {
           style={{ background: '#00000062' }}
         />
         <Background color='#272726' gap={20} size={1} />
-        <Controls showInteractive={false} />
+        <ButtonsDiv>
+          <button onClick={() => rfInstance?.zoomIn?.()}>Zoom in</button>
+          <button onClick={() => rfInstance?.fitView?.()}>Fit view</button>
+          <button onClick={() => rfInstance?.zoomOut?.()}>Zoom out</button>
+        </ButtonsDiv>
       </ReactFlow>
     </Container>
   );

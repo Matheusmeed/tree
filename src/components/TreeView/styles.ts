@@ -9,3 +9,16 @@ export const Container = styled.div`
     display: none;
   }
 `;
+
+export const ButtonsDiv = styled.div`
+  z-index: 9;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+
+  button {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;
