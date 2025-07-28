@@ -79,9 +79,15 @@ const TreeView = () => {
         />
         <Background color='#272726' gap={20} size={1} />
         <ButtonsDiv>
-          <button onClick={() => rfInstance?.zoomIn?.()}>Zoom in</button>
-          <button onClick={() => rfInstance?.fitView?.()}>Fit view</button>
-          <button onClick={() => rfInstance?.zoomOut?.()}>Zoom out</button>
+          <button onClick={() => rfInstance?.zoomOut?.()}>
+            <img src='/assets/icons/zoom_out.svg' />
+          </button>
+          <button onClick={() => rfInstance?.fitView?.()}>
+            <img src='/assets/icons/fit_view.svg' />
+          </button>
+          <button onClick={() => rfInstance?.zoomIn?.()}>
+            <img src='/assets/icons/zoom_in.svg' />
+          </button>
         </ButtonsDiv>
       </ReactFlow>
     </Container>
