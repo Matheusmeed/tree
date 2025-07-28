@@ -9,6 +9,7 @@ import ReactFlow, {
 import dagre from 'dagre';
 import { Container } from './styles';
 import CustomNode from '../CustomNode';
+import { treeData } from './data';
 
 const nodeTypes = {
   custom: CustomNode,
@@ -20,15 +21,6 @@ const nodeHeight = 130;
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
 dagreGraph.setGraph({ rankdir: 'TB' });
-
-const treeData = [
-  { id: '1', label: 'Father', parent: null },
-  { id: '2', label: 'Child 1', parent: '1' },
-  { id: '3', label: 'Child 2', parent: '1' },
-  { id: '4', label: 'Child 3', parent: '1' },
-  { id: '5', label: 'Grandchild 1', parent: '2' },
-  { id: '6', label: 'Grandchild 2', parent: '2' },
-];
 
 const TreeView = () => {
   const { nodes, edges } = useMemo(() => {
