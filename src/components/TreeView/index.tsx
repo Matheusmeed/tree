@@ -43,7 +43,7 @@ const TreeView = () => {
 
       nodes.push({
         id: item.id,
-        data: { label: item.label },
+        data: item,
         position: { x: 0, y: 0 },
         type: 'custom',
       });

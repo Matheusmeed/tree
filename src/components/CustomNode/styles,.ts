@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-export const Card = styled.div`
+export const Card = styled.div<{ isMain: boolean }>`
   background: #242527;
   width: 160px;
   height: 130px;
   border-radius: 7px;
   padding: 8px;
-  border: 1px solid #464646;
+  border: ${({ isMain }) =>
+    isMain ? '1px solid #EDA13F' : '1px solid #464646'};
   display: flex;
   flex-direction: column;
   gap: 8px;

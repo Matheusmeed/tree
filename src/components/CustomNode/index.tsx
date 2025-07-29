@@ -4,6 +4,7 @@ import type { ITreeData } from '../TreeView/data';
 import { BodyDiv, Card, OptionsButton, TitleDiv } from './styles,';
 
 const CustomNode = ({ data }: { data: ITreeData }) => {
+  console.log(data);
   return (
     <>
       <Handle
@@ -11,7 +12,7 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
         position={Position.Top}
         style={{ visibility: 'hidden' }}
       />
-      <Card>
+      <Card isMain={!!data.isMain}>
         <TitleDiv>
           <p>{data.label}</p>
           <OptionsButton>
