@@ -75,7 +75,7 @@ const TreeView = () => {
           nodeStrokeColor='#5d5d5d'
           nodeBorderRadius={8}
           maskColor='rgba(255, 255, 255, 0.1)'
-          style={{ background: '#00000062' }}
+          style={{ background: '#00000062', cursor: 'default' }}
         />
         <Background color='#272726' gap={20} size={1} />
         <ButtonsDiv>
