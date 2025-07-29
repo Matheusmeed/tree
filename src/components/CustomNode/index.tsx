@@ -1,29 +1,23 @@
-import { memo, useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { Handle, Position } from 'react-flow-renderer';
 import type { ITreeData } from '../TreeView/data';
 import { BodyDiv, Card, OptionsButton, TitleDiv, MenuDiv } from './styles';
 
 const CustomNode = ({ data }: { data: ITreeData }) => {
-  const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const isMenuOpen = data.showNodeMenu === data.id;
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setShowMenu(false);
+        data.setShowNodeMenu(null);
       }
     }
+    if (isMenuOpen) document.addEventListener('mousedown', handleClickOutside);
+    else document.removeEventListener('mousedown', handleClickOutside);
 
-    if (showMenu) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [showMenu]);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -35,25 +29,21 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
       <Card isMain={!!data.isMain}>
         <TitleDiv>
           <p>{data.label}</p>
-          <OptionsButton
-            onClick={() => {
-              setShowMenu(true);
-            }}
-          >
+          <OptionsButton onClick={() => data.setShowNodeMenu(data.id)}>
             <img src='/assets/icons/options.svg' alt='' />
           </OptionsButton>
-          {showMenu && (
+          {isMenuOpen && (
             <MenuDiv ref={menuRef}>
               <button>
-                <img src='/public/assets/icons/add.svg' />
+                <img src='/assets/icons/add.svg' />
                 <p>Add Floorplan Tower 1</p>
               </button>
               <button>
-                <img src='/public/assets/icons/hide.svg' />
+                <img src='/assets/icons/hide.svg' />
                 <p>Hide</p>
               </button>
               <button>
-                <img src='/public/assets/icons/delete.svg' />
+                <img src='/assets/icons/delete.svg' />
                 <p>Delete</p>
               </button>
             </MenuDiv>

@@ -20,6 +20,7 @@ dagreGraph.setGraph({ rankdir: 'TB' });
 
 const TreeView = () => {
   const [rfInstance, setRfInstance] = useState<ReactFlowInstance | null>(null);
+  const [showNodeMenu, setShowNodeMenu] = useState<string | null>(null);
 
   const { nodes, edges } = useMemo(() => {
     const nodes: Node[] = [];
@@ -61,7 +62,10 @@ const TreeView = () => {
   return (
     <Container>
       <ReactFlow
-        nodes={nodes}
+        nodes={nodes.map((n) => ({
+          ...n,
+          data: { ...n.data, showNodeMenu, setShowNodeMenu },
+        }))}
         edges={edges}
         nodeTypes={nodeTypes}
         fitView
@@ -69,6 +73,7 @@ const TreeView = () => {
         nodesDraggable={false}
         nodesConnectable={false}
         selectNodesOnDrag={false}
+        onPaneClick={() => setShowNodeMenu(null)}
       >
         <MiniMap
           nodeColor='#5d5d5d'

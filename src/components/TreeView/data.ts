@@ -3,6 +3,8 @@ export interface ITreeData {
   label: string;
   parent: string | null;
   isMain?: boolean;
+  showNodeMenu: string | null;
+  setShowNodeMenu: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const treeData = [
