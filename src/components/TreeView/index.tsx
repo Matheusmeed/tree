@@ -68,7 +68,7 @@ const TreeView = () => {
         onInit={setRfInstance}
         nodesDraggable={false}
         nodesConnectable={false}
-        elementsSelectable={false}
+        selectNodesOnDrag={false}
       >
         <MiniMap
           nodeColor='#5d5d5d'

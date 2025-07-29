@@ -11,6 +11,7 @@ export const Card = styled.div<{ isMain: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  cursor: default;
 `;
 
 export const TitleDiv = styled.div`
