@@ -36,6 +36,8 @@ export const OptionsButton = styled.button`
   justify-content: center;
   cursor: pointer !important;
   padding: 0 1px 0 3px;
+  background-color: red;
+  z-index: 9999;
 `;
 
 export const BodyDiv = styled.div`

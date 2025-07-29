@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Handle, Position } from 'react-flow-renderer';
 import type { ITreeData } from '../TreeView/data';
-import { BodyDiv, Card, OptionsButton, TitleDiv } from './styles,';
+import { BodyDiv, Card, OptionsButton, TitleDiv } from './styles';
 
 const CustomNode = ({ data }: { data: ITreeData }) => {
   console.log(data);
