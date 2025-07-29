@@ -36,9 +36,10 @@ export const OptionsButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer !important;
-  padding: 0 1px 0 3px;
-  background-color: red;
-  z-index: 9999;
+  padding: 0 3px;
+  position: absolute;
+  right: 6px;
+  top: 8px;
 `;
 
 export const BodyDiv = styled.div`
@@ -51,5 +52,52 @@ export const BodyDiv = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+`;
+
+export const MenuDiv = styled.div`
+  width: 192px;
+  background: red;
+  position: absolute;
+  right: 6px;
+  top: 8px;
+  border-radius: 8px;
+  background: #1d1d1c;
+  border: 1px solid #464646;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  :last-child {
+    border-bottom: none;
+  }
+
+  button {
+    height: 32px;
+    width: 100%;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #1d1d1c;
+    border: none;
+    border-bottom: 1px solid #464646;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background: #2c2d2f;
+    }
+
+    > img {
+      width: 14px;
+      height: 14px;
+    }
+
+    > p {
+      font-weight: 400;
+      font-size: 13px;
+      color: #d0d1d1;
+    }
   }
 `;
