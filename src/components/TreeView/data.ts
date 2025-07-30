@@ -7,6 +7,7 @@ export interface ITreeData {
   setShowNodeMenu: React.Dispatch<React.SetStateAction<string | null>>;
   toggleHideNodes: (nodeId: string) => void;
   hasHiddenChildren: boolean;
+  hiddenCount: number;
 }
 
 export const treeData = [

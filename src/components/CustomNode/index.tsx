@@ -1,7 +1,14 @@
 import { memo, useEffect, useRef } from 'react';
 import { Handle, Position } from 'react-flow-renderer';
 import type { ITreeData } from '../TreeView/data';
-import { BodyDiv, Card, OptionsButton, TitleDiv, MenuDiv } from './styles';
+import {
+  BodyDiv,
+  Card,
+  OptionsButton,
+  TitleDiv,
+  MenuDiv,
+  ChildrenNumber,
+} from './styles';
 
 const CustomNode = ({ data }: { data: ITreeData }) => {
   const menuRef = useRef<HTMLDivElement>(null);
@@ -38,7 +45,12 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
                 <img src='/assets/icons/add.svg' />
                 <p>Add Floorplan {data.label}</p>
               </button>
-              <button onClick={() => data.toggleHideNodes?.(data.id)}>
+              <button
+                onClick={() => {
+                  data.toggleHideNodes?.(data.id);
+                  data.setShowNodeMenu(null);
+                }}
+              >
                 <img src='/assets/icons/hide.svg' />
                 <p>
                   {data.hasHiddenChildren ? 'Show Children' : 'Hide Children'}
@@ -53,6 +65,11 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
         </TitleDiv>
         <BodyDiv>
           <img src='/assets/images/view.png' alt='' />
+          {data.hasHiddenChildren && (
+            <ChildrenNumber onClick={() => data.toggleHideNodes?.(data.id)}>
+              <p>{data.hiddenCount}</p>
+            </ChildrenNumber>
+          )}
         </BodyDiv>
       </Card>
       <Handle

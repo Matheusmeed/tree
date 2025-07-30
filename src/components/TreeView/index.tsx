@@ -89,10 +89,13 @@ const TreeView = () => {
         nodes={nodes
           .filter((n) => !hiddenNodes.includes(n.id))
           .map((n) => {
-            const descendants = getAllDescendants(n.id, nodes);
-            const hasHiddenChildren = descendants.some((id) =>
+            const directChildren = nodes
+              .filter((c) => c.data.parent === n.id)
+              .map((c) => c.id);
+            const hiddenDirectCount = directChildren.filter((id) =>
               hiddenNodes.includes(id)
-            );
+            ).length;
+            const hasHiddenChildren = hiddenDirectCount > 0;
 
             return {
               ...n,
@@ -102,6 +105,7 @@ const TreeView = () => {
                 setShowNodeMenu,
                 toggleHideNodes,
                 hasHiddenChildren,
+                hiddenCount: hiddenDirectCount,
               },
             };
           })}

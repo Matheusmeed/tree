@@ -102,3 +102,25 @@ export const MenuDiv = styled.div`
     }
   }
 `;
+
+export const ChildrenNumber = styled.button`
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  background: #eea23f;
+  border: none;
+  cursor: pointer;
+
+  p {
+    color: black;
+    font-size: 12px;
+    font-weight: 500;
+  }
+`;
