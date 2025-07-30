@@ -56,7 +56,7 @@ export const BodyDiv = styled.div`
 `;
 
 export const MenuDiv = styled.div`
-  width: 192px;
+  width: fit-content;
   background: red;
   position: absolute;
   right: 6px;
@@ -98,6 +98,7 @@ export const MenuDiv = styled.div`
       font-weight: 400;
       font-size: 13px;
       color: #d0d1d1;
+      white-space: nowrap;
     }
   }
 `;

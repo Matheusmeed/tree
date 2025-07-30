@@ -36,7 +36,7 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
             <MenuDiv ref={menuRef}>
               <button>
                 <img src='/assets/icons/add.svg' />
-                <p>Add Floorplan Tower 1</p>
+                <p>Add Floorplan {data.label}</p>
               </button>
               <button>
                 <img src='/assets/icons/hide.svg' />
