@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactFlow, {
   Background,
   MiniMap,
@@ -22,9 +22,33 @@ const TreeView = () => {
   const [rfInstance, setRfInstance] = useState<ReactFlowInstance | null>(null);
   const [showNodeMenu, setShowNodeMenu] = useState<string | null>(null);
 
-  const { nodes, edges } = useMemo(() => {
-    const nodes: Node[] = [];
-    const edges: Edge[] = [];
+  const [nodes, setNodes] = useState<Node[]>([]);
+  const [edges, setEdges] = useState<Edge[]>([]);
+  const [hiddenNodes, setHiddenNodes] = useState<string[]>([]);
+
+  const getAllDescendants = (parentId: string, allNodes: Node[]): string[] => {
+    const directChildren = allNodes
+      .filter((n) => n.data.parent === parentId)
+      .map((n) => n.id);
+    return directChildren.reduce<string[]>((acc, childId) => {
+      return [...acc, childId, ...getAllDescendants(childId, allNodes)];
+    }, []);
+  };
+
+  const toggleHideNodes = (nodeId: string) => {
+    setHiddenNodes((prev) => {
+      const descendants = getAllDescendants(nodeId, nodes);
+      const isAlreadyHidden = descendants.every((id) => prev.includes(id));
+
+      return isAlreadyHidden
+        ? prev.filter((id) => !descendants.includes(id))
+        : [...prev, ...descendants];
+    });
+  };
+
+  useEffect(() => {
+    const n: Node[] = [];
+    const e: Edge[] = [];
 
     treeData.forEach((item) => {
       dagreGraph.setNode(item.id, { width: nodeWidth, height: nodeHeight });
@@ -33,16 +57,15 @@ const TreeView = () => {
     treeData.forEach((item) => {
       if (item.parent) {
         dagreGraph.setEdge(item.parent, item.id);
-        edges.push({
+        e.push({
           id: `e-${item.parent}-${item.id}`,
           source: item.parent,
           target: item.id,
-          animated: false,
           style: { stroke: '#464646' },
         });
       }
 
-      nodes.push({
+      n.push({
         id: item.id,
         data: item,
         position: { x: 0, y: 0 },
@@ -51,22 +74,41 @@ const TreeView = () => {
     });
 
     dagre.layout(dagreGraph);
-    nodes.forEach((node) => {
+    n.forEach((node) => {
       const pos = dagreGraph.node(node.id);
       node.position = { x: pos.x - nodeWidth / 2, y: pos.y - nodeHeight / 2 };
     });
 
-    return { nodes, edges };
+    setNodes(n);
+    setEdges(e);
   }, []);
 
   return (
     <Container>
       <ReactFlow
-        nodes={nodes.map((n) => ({
-          ...n,
-          data: { ...n.data, showNodeMenu, setShowNodeMenu },
-        }))}
-        edges={edges}
+        nodes={nodes
+          .filter((n) => !hiddenNodes.includes(n.id))
+          .map((n) => {
+            const descendants = getAllDescendants(n.id, nodes);
+            const hasHiddenChildren = descendants.some((id) =>
+              hiddenNodes.includes(id)
+            );
+
+            return {
+              ...n,
+              data: {
+                ...n.data,
+                showNodeMenu,
+                setShowNodeMenu,
+                toggleHideNodes,
+                hasHiddenChildren,
+              },
+            };
+          })}
+        edges={edges.filter(
+          (e) =>
+            !hiddenNodes.includes(e.source) && !hiddenNodes.includes(e.target)
+        )}
         nodeTypes={nodeTypes}
         fitView
         onInit={setRfInstance}

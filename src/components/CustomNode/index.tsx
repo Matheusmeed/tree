@@ -38,9 +38,11 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
                 <img src='/assets/icons/add.svg' />
                 <p>Add Floorplan {data.label}</p>
               </button>
-              <button>
+              <button onClick={() => data.toggleHideNodes?.(data.id)}>
                 <img src='/assets/icons/hide.svg' />
-                <p>Hide</p>
+                <p>
+                  {data.hasHiddenChildren ? 'Show Children' : 'Hide Children'}
+                </p>
               </button>
               <button>
                 <img src='/assets/icons/delete.svg' />
