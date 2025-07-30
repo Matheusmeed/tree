@@ -95,7 +95,7 @@ const TreeView = () => {
             const hiddenDirectCount = directChildren.filter((id) =>
               hiddenNodes.includes(id)
             ).length;
-            const hasHiddenChildren = hiddenDirectCount > 0;
+            const hasChildren = directChildren.length > 0; // ✅ novo
 
             return {
               ...n,
@@ -104,8 +104,9 @@ const TreeView = () => {
                 showNodeMenu,
                 setShowNodeMenu,
                 toggleHideNodes,
-                hasHiddenChildren,
+                hasHiddenChildren: hiddenDirectCount > 0,
                 hiddenCount: hiddenDirectCount,
+                hasChildren,
               },
             };
           })}

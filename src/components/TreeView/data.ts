@@ -8,6 +8,7 @@ export interface ITreeData {
   toggleHideNodes: (nodeId: string) => void;
   hasHiddenChildren: boolean;
   hiddenCount: number;
+  hasChildren: boolean;
 }
 
 export const treeData = [
