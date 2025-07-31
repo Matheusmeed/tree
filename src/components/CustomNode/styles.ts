@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 
-export const Card = styled.div<{ isMain: boolean }>`
+export const Card = styled.div<{ isMain: boolean; isSpotlight: boolean }>`
   background: #242527;
   width: 160px;
-  height: 130px;
+  height: ${({ isSpotlight }) => (isSpotlight ? 'fit-content' : '130px')};
   border-radius: 7px;
   padding: 8px;
   border: ${({ isMain }) =>
     isMain ? '1px solid #EDA13F' : '1px solid #464646'};
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: ${({ isMain, isSpotlight }) => (isMain || isSpotlight ? '8px' : '4px')};
   cursor: default;
 `;
 
-export const TitleDiv = styled.div`
+export const TitleDiv = styled.div<{ isSpotlight: boolean }>`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -23,9 +23,12 @@ export const TitleDiv = styled.div`
   > p {
     margin: 0;
     padding: 0;
-    font-weight: 600;
-    font-size: 13px;
-    color: #ffffff;
+    background: ${({ isSpotlight }) => (isSpotlight ? '#1D1D1C' : 'none')};
+    padding: ${({ isSpotlight }) => (isSpotlight ? '4px' : '0')};
+    color: ${({ isSpotlight }) => (isSpotlight ? '#D0D1D1' : '#ffffff')};
+    font-size: ${({ isSpotlight }) => (isSpotlight ? '11px' : '13px')};
+    font-weight: ${({ isSpotlight }) => (isSpotlight ? '400' : '600')};
+    border-radius: 2px;
   }
 `;
 
@@ -46,12 +49,21 @@ export const BodyDiv = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
   > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 8px;
+  }
+
+  > p {
+    font-weight: 400;
+    font-size: 12px;
+    color: #ffffff;
   }
 `;
 
@@ -122,5 +134,18 @@ export const ChildrenNumber = styled.button`
     color: black;
     font-size: 12px;
     font-weight: 500;
+  }
+`;
+
+export const TypeDiv = styled.div`
+  background: #2c2d2f;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 4px 7px;
+
+  > p {
+    color: #ffffffe8;
+    font-weight: 400;
+    font-size: 10px;
   }
 `;

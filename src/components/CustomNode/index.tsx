@@ -8,6 +8,7 @@ import {
   TitleDiv,
   MenuDiv,
   ChildrenNumber,
+  TypeDiv,
 } from './styles';
 
 const CustomNode = ({ data }: { data: ITreeData }) => {
@@ -33,9 +34,9 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
         position={Position.Top}
         style={{ visibility: 'hidden' }}
       />
-      <Card isMain={!!data.isMain}>
-        <TitleDiv>
-          <p>{data.label}</p>
+      <Card isMain={!!data.isMain} isSpotlight={!!data.isSpotlight}>
+        <TitleDiv isSpotlight={!!data.isSpotlight}>
+          <p>{data.isSpotlight ? data.type : data.label}</p>
           <OptionsButton onClick={() => data.setShowNodeMenu(data.id)}>
             <img src='/assets/icons/options.svg' alt='' />
           </OptionsButton>
@@ -73,7 +74,13 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
           )}
         </TitleDiv>
         <BodyDiv>
-          <img src='/assets/images/view.png' alt='' />
+          {data.isSpotlight && <p>{data.label}</p>}
+          {data.isMaskPoint && (
+            <TypeDiv>
+              <p>Mask point</p>
+            </TypeDiv>
+          )}
+          {!data.isSpotlight && <img src='/assets/images/view.png' alt='' />}
           {data.hasHiddenChildren && (
             <ChildrenNumber onClick={() => data.toggleHideNodes?.(data.id)}>
               <p>{data.hiddenCount}</p>
