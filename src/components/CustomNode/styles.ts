@@ -12,6 +12,12 @@ export const Card = styled.div<{ isMain: boolean; isSpotlight: boolean }>`
   flex-direction: column;
   gap: ${({ isMain, isSpotlight }) => (isMain || isSpotlight ? '8px' : '4px')};
   cursor: default;
+  transition: 0.3s;
+
+  &:hover {
+    border: ${({ isMain }) =>
+      isMain ? '1px solid #ffce8eff' : '1px solid #929393'};
+  }
 `;
 
 export const TitleDiv = styled.div<{ isSpotlight: boolean }>`
