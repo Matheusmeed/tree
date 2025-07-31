@@ -24,7 +24,7 @@ const TreeView = () => {
 
   const [nodes, setNodes] = useState<Node[]>([]);
   const [edges, setEdges] = useState<Edge[]>([]);
-  const [hiddenNodes, setHiddenNodes] = useState<string[]>([]);
+  const [collapsedNodes, setCollapsedNodes] = useState<string[]>([]);
 
   const getAllDescendants = (parentId: string, allNodes: Node[]): string[] => {
     const directChildren = allNodes
@@ -35,8 +35,8 @@ const TreeView = () => {
     }, []);
   };
 
-  const toggleHideNodes = (nodeId: string) => {
-    setHiddenNodes((prev) => {
+  const toggleCollapseNodes = (nodeId: string) => {
+    setCollapsedNodes((prev) => {
       const descendants = getAllDescendants(nodeId, nodes);
       const isAlreadyHidden = descendants.every((id) => prev.includes(id));
 
@@ -87,13 +87,13 @@ const TreeView = () => {
     <Container>
       <ReactFlow
         nodes={nodes
-          .filter((n) => !hiddenNodes.includes(n.id))
+          .filter((n) => !collapsedNodes.includes(n.id))
           .map((n) => {
             const directChildren = nodes
               .filter((c) => c.data.parent === n.id)
               .map((c) => c.id);
-            const hiddenDirectCount = directChildren.filter((id) =>
-              hiddenNodes.includes(id)
+            const collapsedDirectCount = directChildren.filter((id) =>
+              collapsedNodes.includes(id)
             ).length;
             const hasChildren = directChildren.length > 0;
 
@@ -103,16 +103,17 @@ const TreeView = () => {
                 ...n.data,
                 showNodeMenu,
                 setShowNodeMenu,
-                toggleHideNodes,
-                hasHiddenChildren: hiddenDirectCount > 0,
-                hiddenCount: hiddenDirectCount,
+                toggleCollapseNodes,
+                hasCollapsedChildren: collapsedDirectCount > 0,
+                collapseCount: collapsedDirectCount,
                 hasChildren,
               },
             };
           })}
         edges={edges.filter(
           (e) =>
-            !hiddenNodes.includes(e.source) && !hiddenNodes.includes(e.target)
+            !collapsedNodes.includes(e.source) &&
+            !collapsedNodes.includes(e.target)
         )}
         nodeTypes={nodeTypes}
         fitView

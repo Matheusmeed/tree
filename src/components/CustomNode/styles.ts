@@ -77,6 +77,7 @@ export const MenuDiv = styled.div`
   width: fit-content;
   background: red;
   position: absolute;
+  z-index: 2;
   right: 6px;
   top: 8px;
   border-radius: 8px;
