@@ -52,9 +52,15 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
                     data.setShowNodeMenu(null);
                   }}
                 >
-                  <img src='/assets/icons/hide.svg' />
+                  <img
+                    src={`/assets/icons/${
+                      data.hasHiddenChildren ? 'expand_all' : 'collapse_all'
+                    }.svg`}
+                  />
                   <p>
-                    {data.hasHiddenChildren ? 'Show Children' : 'Hide Children'}
+                    {data.hasHiddenChildren
+                      ? 'Expand children'
+                      : 'Collapse children'}
                   </p>
                 </button>
               )}
