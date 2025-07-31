@@ -51,17 +51,17 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
               {data.hasChildren && (
                 <button
                   onClick={() => {
-                    data.toggleHideNodes?.(data.id);
+                    data.toggleCollapseNodes?.(data.id);
                     data.setShowNodeMenu(null);
                   }}
                 >
                   <img
                     src={`/assets/icons/${
-                      data.hasHiddenChildren ? 'expand_all' : 'collapse_all'
+                      data.hasCollapsedChildren ? 'expand_all' : 'collapse_all'
                     }.svg`}
                   />
                   <p>
-                    {data.hasHiddenChildren
+                    {data.hasCollapsedChildren
                       ? 'Expand children'
                       : 'Collapse children'}
                   </p>
@@ -91,9 +91,9 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
             </TypeDiv>
           )}
           {!data.isSpotlight && <img src='/assets/images/view.png' alt='' />}
-          {data.hasHiddenChildren && (
-            <ChildrenNumber onClick={() => data.toggleHideNodes?.(data.id)}>
-              <p>{data.hiddenCount}</p>
+          {data.hasCollapsedChildren && (
+            <ChildrenNumber onClick={() => data.toggleCollapseNodes?.(data.id)}>
+              <p>{data.collapseCount}</p>
             </ChildrenNumber>
           )}
         </BodyDiv>

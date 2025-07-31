@@ -6,9 +6,9 @@ export interface ITreeData {
   isMain?: boolean;
   showNodeMenu: string | null;
   setShowNodeMenu: React.Dispatch<React.SetStateAction<string | null>>;
-  toggleHideNodes: (nodeId: string) => void;
-  hasHiddenChildren: boolean;
-  hiddenCount: number;
+  toggleCollapseNodes: (nodeId: string) => void;
+  hasCollapsedChildren: boolean;
+  collapseCount: number;
   hasChildren: boolean;
   isSpotlight?: boolean;
   isMaskPoint?: boolean;
