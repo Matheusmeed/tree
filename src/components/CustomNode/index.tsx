@@ -16,14 +16,16 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
   const isMenuOpen = data.showNodeMenu === data.id;
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+    if (!isMenuOpen) return;
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as HTMLElement)
+      ) {
         data.setShowNodeMenu(null);
       }
-    }
-    if (isMenuOpen) document.addEventListener('mousedown', handleClickOutside);
-    else document.removeEventListener('mousedown', handleClickOutside);
-
+    };
+    document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMenuOpen]);
 
