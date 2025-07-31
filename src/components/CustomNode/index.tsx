@@ -69,6 +69,14 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
               )}
 
               <button>
+                <img src='/assets/icons/edit.svg' />
+                <p>Edit</p>
+              </button>
+              <button>
+                <img src='/assets/icons/hide.svg' />
+                <p>Hide</p>
+              </button>
+              <button>
                 <img src='/assets/icons/delete.svg' />
                 <p>Delete</p>
               </button>
