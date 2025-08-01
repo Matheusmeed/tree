@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Card = styled.div<{ isMain: boolean; isSpotlight: boolean }>`
+export const Card = styled.div<{
+  isMain: boolean;
+  isSpotlight: boolean;
+  isHidden?: boolean;
+}>`
   background: #242527;
   width: 160px;
   height: ${({ isSpotlight }) => (isSpotlight ? 'fit-content' : '130px')};
@@ -13,6 +17,9 @@ export const Card = styled.div<{ isMain: boolean; isSpotlight: boolean }>`
   gap: ${({ isMain, isSpotlight }) => (isMain || isSpotlight ? '8px' : '4px')};
   cursor: default;
   transition: 0.3s;
+
+  opacity: ${({ isHidden }) => (isHidden ? 0.4 : 1)};
+  filter: ${({ isHidden }) => (isHidden ? 'grayscale(0.7)' : 'none')};
 
   &:hover {
     border: ${({ isMain }) =>

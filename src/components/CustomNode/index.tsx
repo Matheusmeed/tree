@@ -36,7 +36,11 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
         position={Position.Top}
         style={{ visibility: 'hidden' }}
       />
-      <Card isMain={!!data.isMain} isSpotlight={!!data.isSpotlight}>
+      <Card
+        isMain={!!data.isMain}
+        isSpotlight={!!data.isSpotlight}
+        isHidden={!!data.isHidden}
+      >
         <TitleDiv isSpotlight={!!data.isSpotlight}>
           <p>{data.isSpotlight ? data.type : data.label}</p>
           <OptionsButton onClick={() => data.setShowNodeMenu(data.id)}>
@@ -72,7 +76,12 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
                 <img src='/assets/icons/edit.svg' />
                 <p>Edit</p>
               </button>
-              <button>
+              <button
+                onClick={() => {
+                  data.toggleHideNodes?.(data.id);
+                  data.setShowNodeMenu(null);
+                }}
+              >
                 <img src='/assets/icons/hide.svg' />
                 <p>Hide</p>
               </button>

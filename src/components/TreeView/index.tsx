@@ -25,6 +25,7 @@ const TreeView = () => {
   const [nodes, setNodes] = useState<Node[]>([]);
   const [edges, setEdges] = useState<Edge[]>([]);
   const [collapsedNodes, setCollapsedNodes] = useState<string[]>([]);
+  const [hiddenNodes, setHiddenNodes] = useState<string[]>([]);
 
   const getAllDescendants = (parentId: string, allNodes: Node[]): string[] => {
     const directChildren = allNodes
@@ -43,6 +44,18 @@ const TreeView = () => {
       return isAlreadyHidden
         ? prev.filter((id) => !descendants.includes(id))
         : [...prev, ...descendants];
+    });
+  };
+
+  const toggleHideNodes = (nodeId: string) => {
+    setHiddenNodes((prev) => {
+      const descendants = getAllDescendants(nodeId, nodes);
+      const targets = [nodeId, ...descendants];
+      const isAlreadyHidden = targets.every((id) => prev.includes(id));
+
+      return isAlreadyHidden
+        ? prev.filter((id) => !targets.includes(id))
+        : [...prev, ...targets];
     });
   };
 
@@ -96,6 +109,7 @@ const TreeView = () => {
               collapsedNodes.includes(id)
             ).length;
             const hasChildren = directChildren.length > 0;
+            const isHidden = hiddenNodes.includes(n.id);
 
             return {
               ...n,
@@ -104,6 +118,8 @@ const TreeView = () => {
                 showNodeMenu,
                 setShowNodeMenu,
                 toggleCollapseNodes,
+                toggleHideNodes,
+                isHidden,
                 hasCollapsedChildren: collapsedDirectCount > 0,
                 collapseCount: collapsedDirectCount,
                 hasChildren,
