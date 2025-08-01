@@ -36,12 +36,8 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
         position={Position.Top}
         style={{ visibility: 'hidden' }}
       />
-      <Card
-        isMain={!!data.isMain}
-        isSpotlight={!!data.isSpotlight}
-        isHidden={!!data.isHidden}
-      >
-        <TitleDiv isSpotlight={!!data.isSpotlight}>
+      <Card isMain={!!data.isMain} isSpotlight={!!data.isSpotlight}>
+        <TitleDiv isSpotlight={!!data.isSpotlight} isHidden={!!data.isHidden}>
           <p>{data.isSpotlight ? data.type : data.label}</p>
           <OptionsButton onClick={() => data.setShowNodeMenu(data.id)}>
             <img src='/assets/icons/options.svg' alt='' />
@@ -92,10 +88,10 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
             </MenuDiv>
           )}
         </TitleDiv>
-        <BodyDiv>
+        <BodyDiv isHidden={!!data.isHidden}>
           {data.isSpotlight && <p>{data.label}</p>}
           {data.isMaskPoint && (
-            <TypeDiv>
+            <TypeDiv isHidden={!!data.isHidden}>
               <p>Mask point</p>
             </TypeDiv>
           )}

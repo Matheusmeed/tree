@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Card = styled.div<{
   isMain: boolean;
   isSpotlight: boolean;
-  isHidden?: boolean;
 }>`
   background: #242527;
   width: 160px;
@@ -18,16 +17,13 @@ export const Card = styled.div<{
   cursor: default;
   transition: 0.3s;
 
-  opacity: ${({ isHidden }) => (isHidden ? 0.4 : 1)};
-  filter: ${({ isHidden }) => (isHidden ? 'grayscale(0.7)' : 'none')};
-
   &:hover {
     border: ${({ isMain }) =>
       isMain ? '1px solid #ffce8eff' : '1px solid #929393'};
   }
 `;
 
-export const TitleDiv = styled.div<{ isSpotlight: boolean }>`
+export const TitleDiv = styled.div<{ isSpotlight: boolean; isHidden: boolean }>`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -38,7 +34,8 @@ export const TitleDiv = styled.div<{ isSpotlight: boolean }>`
     padding: 0;
     background: ${({ isSpotlight }) => (isSpotlight ? '#1D1D1C' : 'none')};
     padding: ${({ isSpotlight }) => (isSpotlight ? '4px' : '0')};
-    color: ${({ isSpotlight }) => (isSpotlight ? '#D0D1D1' : '#ffffff')};
+    color: ${({ isSpotlight, isHidden }) =>
+      isHidden ? '#464646' : isSpotlight ? '#D0D1D1' : '#ffffff'};
     font-size: ${({ isSpotlight }) => (isSpotlight ? '11px' : '13px')};
     font-weight: ${({ isSpotlight }) => (isSpotlight ? '400' : '600')};
     border-radius: 2px;
@@ -58,7 +55,7 @@ export const OptionsButton = styled.button`
   top: 8px;
 `;
 
-export const BodyDiv = styled.div`
+export const BodyDiv = styled.div<{ isHidden: boolean }>`
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -71,18 +68,18 @@ export const BodyDiv = styled.div`
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
+    filter: ${({ isHidden }) => (isHidden ? 'grayscale(1)' : 'none')};
   }
 
   > p {
     font-weight: 400;
     font-size: 12px;
-    color: #ffffff;
+    color: ${({ isHidden }) => (isHidden ? '#545556' : '#ffffff')};
   }
 `;
 
 export const MenuDiv = styled.div`
   width: fit-content;
-  background: red;
   position: absolute;
   z-index: 2;
   right: 6px;
@@ -151,14 +148,14 @@ export const ChildrenNumber = styled.button`
   }
 `;
 
-export const TypeDiv = styled.div`
+export const TypeDiv = styled.div<{ isHidden: boolean }>`
   background: #2c2d2f;
   width: fit-content;
   border-radius: 4px;
   padding: 4px 7px;
 
   > p {
-    color: #ffffffe8;
+    color: ${({ isHidden }) => (isHidden ? '#545556' : '#ffffffe8')};
     font-weight: 400;
     font-size: 10px;
   }
