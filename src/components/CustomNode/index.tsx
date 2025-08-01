@@ -78,8 +78,10 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
                   data.setShowNodeMenu(null);
                 }}
               >
-                <img src='/assets/icons/hide.svg' />
-                <p>Hide</p>
+                <img
+                  src={`/assets/icons/${data.isHidden ? 'show' : 'hide'}.svg`}
+                />
+                <p>{data.isHidden ? 'Show' : 'Hide'}</p>
               </button>
               <button>
                 <img src='/assets/icons/delete.svg' />
