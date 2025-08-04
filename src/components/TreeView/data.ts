@@ -14,6 +14,7 @@ export interface ITreeData {
   isMaskPoint?: boolean;
   isHidden: boolean;
   toggleHideNodes: (nodeId: string) => void;
+  parentIsHidden: boolean;
 }
 
 export const treeData = [

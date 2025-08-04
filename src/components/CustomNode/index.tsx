@@ -72,17 +72,20 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
                 <img src='/assets/icons/edit.svg' />
                 <p>Edit</p>
               </button>
-              <button
-                onClick={() => {
-                  data.toggleHideNodes?.(data.id);
-                  data.setShowNodeMenu(null);
-                }}
-              >
-                <img
-                  src={`/assets/icons/${data.isHidden ? 'show' : 'hide'}.svg`}
-                />
-                <p>{data.isHidden ? 'Show' : 'Hide'}</p>
-              </button>
+              {!data.parentIsHidden && (
+                <button
+                  onClick={() => {
+                    data.toggleHideNodes?.(data.id);
+                    data.setShowNodeMenu(null);
+                  }}
+                >
+                  <img
+                    src={`/assets/icons/${data.isHidden ? 'show' : 'hide'}.svg`}
+                  />
+                  <p>{data.isHidden ? 'Show' : 'Hide'}</p>
+                </button>
+              )}
+
               <button>
                 <img src='/assets/icons/delete.svg' />
                 <p>Delete</p>

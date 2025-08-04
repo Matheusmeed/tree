@@ -96,6 +96,13 @@ const TreeView = () => {
     setEdges(e);
   }, []);
 
+  const hasHiddenAncestor = (nodeId: string): boolean => {
+    const node = nodes.find((n) => n.id === nodeId);
+    if (!node || !node.data.parent) return false;
+    if (hiddenNodes.includes(node.data.parent)) return true;
+    return hasHiddenAncestor(node.data.parent);
+  };
+
   return (
     <Container>
       <ReactFlow
@@ -110,6 +117,7 @@ const TreeView = () => {
             ).length;
             const hasChildren = directChildren.length > 0;
             const isHidden = hiddenNodes.includes(n.id);
+            const parentIsHidden = hasHiddenAncestor(n.id);
 
             return {
               ...n,
@@ -120,6 +128,7 @@ const TreeView = () => {
                 toggleCollapseNodes,
                 toggleHideNodes,
                 isHidden,
+                parentIsHidden,
                 hasCollapsedChildren: collapsedDirectCount > 0,
                 collapseCount: collapsedDirectCount,
                 hasChildren,
