@@ -52,7 +52,12 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
             <img src='/assets/icons/options.svg' alt='' />
           </OptionsButton>
           {isMenuOpen && (
-            <MenuDiv ref={menuRef}>
+            <MenuDiv
+              ref={menuRef}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <button>
                 <img src='/assets/icons/add.svg' />
                 <p>Add Floorplan {data.label}</p>
@@ -111,7 +116,12 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
           )}
           {!data.isSpotlight && <img src='/assets/images/view.png' alt='' />}
           {data.hasCollapsedChildren && (
-            <ChildrenNumber onClick={() => data.toggleCollapseNodes?.(data.id)}>
+            <ChildrenNumber
+              onClick={(e) => {
+                e.stopPropagation();
+                data.toggleCollapseNodes?.(data.id);
+              }}
+            >
               <p>{data.collapseCount}</p>
             </ChildrenNumber>
           )}
