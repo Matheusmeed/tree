@@ -36,7 +36,11 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
         position={Position.Top}
         style={{ visibility: 'hidden' }}
       />
-      <Card isMain={!!data.isMain} isSpotlight={!!data.isSpotlight}>
+      <Card
+        isMain={!!data.isMain}
+        isSpotlight={!!data.isSpotlight}
+        isSelected={true}
+      >
         <TitleDiv isSpotlight={!!data.isSpotlight} isHidden={!!data.isHidden}>
           <p>{data.isSpotlight ? data.type : data.label}</p>
           <OptionsButton onClick={() => data.setShowNodeMenu(data.id)}>

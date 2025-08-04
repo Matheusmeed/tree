@@ -3,13 +3,15 @@ import styled from 'styled-components';
 export const Card = styled.div<{
   isMain: boolean;
   isSpotlight: boolean;
+  isSelected: boolean;
 }>`
   background: #242527;
   width: 160px;
   height: ${({ isSpotlight }) => (isSpotlight ? 'fit-content' : '130px')};
   border-radius: 7px;
   padding: 8px;
-  border: 1px solid #464646;
+  border: ${({ isSelected }) =>
+    isSelected ? '1px solid #EDA13F' : '1px solid #464646'};
   display: flex;
   flex-direction: column;
   gap: ${({ isMain, isSpotlight }) => (isMain || isSpotlight ? '8px' : '4px')};
@@ -17,7 +19,8 @@ export const Card = styled.div<{
   transition: 0.3s;
 
   &:hover {
-    border: 1px solid #929393;
+    border: ${({ isSelected }) =>
+      isSelected ? '1px solid #ffce8eff' : '1px solid #929393'};
   }
 `;
 
