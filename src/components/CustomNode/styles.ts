@@ -9,8 +9,7 @@ export const Card = styled.div<{
   height: ${({ isSpotlight }) => (isSpotlight ? 'fit-content' : '130px')};
   border-radius: 7px;
   padding: 8px;
-  border: ${({ isMain }) =>
-    isMain ? '1px solid #EDA13F' : '1px solid #464646'};
+  border: 1px solid #464646;
   display: flex;
   flex-direction: column;
   gap: ${({ isMain, isSpotlight }) => (isMain || isSpotlight ? '8px' : '4px')};
@@ -18,8 +17,7 @@ export const Card = styled.div<{
   transition: 0.3s;
 
   &:hover {
-    border: ${({ isMain }) =>
-      isMain ? '1px solid #ffce8eff' : '1px solid #929393'};
+    border: 1px solid #929393;
   }
 `;
 
