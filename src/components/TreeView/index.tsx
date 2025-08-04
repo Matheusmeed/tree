@@ -150,7 +150,7 @@ const TreeView = () => {
         nodesConnectable={false}
         selectNodesOnDrag={false}
         onPaneClick={() => setShowNodeMenu(null)}
-        onNodeClick={(event, node) => {
+        onNodeClick={(_event, node) => {
           setSelectedNode((prev) => {
             return prev === node.id ? null : node.id;
           });
