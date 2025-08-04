@@ -15,6 +15,7 @@ export interface ITreeData {
   isHidden: boolean;
   toggleHideNodes: (nodeId: string) => void;
   parentIsHidden: boolean;
+  isSelected: boolean;
 }
 
 export const treeData = [

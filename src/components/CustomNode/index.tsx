@@ -39,7 +39,7 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
       <Card
         isMain={!!data.isMain}
         isSpotlight={!!data.isSpotlight}
-        isSelected={true}
+        isSelected={data.isSelected}
       >
         <TitleDiv isSpotlight={!!data.isSpotlight} isHidden={!!data.isHidden}>
           <p>{data.isSpotlight ? data.type : data.label}</p>

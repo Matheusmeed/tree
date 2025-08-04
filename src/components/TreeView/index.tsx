@@ -26,6 +26,7 @@ const TreeView = () => {
   const [edges, setEdges] = useState<Edge[]>([]);
   const [collapsedNodes, setCollapsedNodes] = useState<string[]>([]);
   const [hiddenNodes, setHiddenNodes] = useState<string[]>([]);
+  const [selectedNode, setSelectedNode] = useState<string | null>(null);
 
   const getAllDescendants = (parentId: string, allNodes: Node[]): string[] => {
     const directChildren = allNodes
@@ -118,6 +119,7 @@ const TreeView = () => {
             const hasChildren = directChildren.length > 0;
             const isHidden = hiddenNodes.includes(n.id);
             const parentIsHidden = hasHiddenAncestor(n.id);
+            const isSelected = selectedNode === n.id;
 
             return {
               ...n,
@@ -132,6 +134,7 @@ const TreeView = () => {
                 hasCollapsedChildren: collapsedDirectCount > 0,
                 collapseCount: collapsedDirectCount,
                 hasChildren,
+                isSelected,
               },
             };
           })}
@@ -147,6 +150,10 @@ const TreeView = () => {
         nodesConnectable={false}
         selectNodesOnDrag={false}
         onPaneClick={() => setShowNodeMenu(null)}
+        onNodeClick={(event, node) => {
+          setSelectedNode(node.id);
+          setShowNodeMenu(null);
+        }}
       >
         <MiniMap
           nodeColor='#5d5d5d'
