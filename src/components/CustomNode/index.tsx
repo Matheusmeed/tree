@@ -43,7 +43,12 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
       >
         <TitleDiv isSpotlight={!!data.isSpotlight} isHidden={!!data.isHidden}>
           <p>{data.isSpotlight ? data.type : data.label}</p>
-          <OptionsButton onClick={() => data.setShowNodeMenu(data.id)}>
+          <OptionsButton
+            onClick={(e) => {
+              e.stopPropagation();
+              data.setShowNodeMenu(data.id);
+            }}
+          >
             <img src='/assets/icons/options.svg' alt='' />
           </OptionsButton>
           {isMenuOpen && (
