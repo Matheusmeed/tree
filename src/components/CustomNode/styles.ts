@@ -64,14 +64,6 @@ export const BodyDiv = styled.div<{ isHidden: boolean }>`
   flex-direction: column;
   gap: 8px;
 
-  > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-    filter: ${({ isHidden }) => (isHidden ? 'grayscale(1)' : 'none')};
-  }
-
   > p {
     font-weight: 400;
     font-size: 12px;

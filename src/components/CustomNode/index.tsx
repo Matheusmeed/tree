@@ -10,6 +10,7 @@ import {
   ChildrenNumber,
   TypeDiv,
 } from './styles';
+import CardImage from '../CardImage';
 
 const CustomNode = ({ data }: { data: ITreeData }) => {
   const menuRef = useRef<HTMLDivElement>(null);
@@ -114,7 +115,7 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
               <p>Mask point</p>
             </TypeDiv>
           )}
-          {!data.isSpotlight && <img src='/assets/images/view.png' alt='' />}
+          {!data.isSpotlight && <CardImage img='/assets/images/view.png' />}
           {data.hasCollapsedChildren && (
             <ChildrenNumber
               onClick={(e) => {
