@@ -1,12 +1,12 @@
 import { useSvgData } from '../../hooks/useSvgPolygons';
 import { BackgroundImage, BackgroundWrapper, SvgWrapper } from './styles';
 
-const CardImage = ({ img }: { img: string }) => {
+const CardImage = ({ img, isHidden }: { img: string; isHidden: boolean }) => {
   const svgData = useSvgData('/assets/images/mask.svg');
 
   return (
     <BackgroundWrapper>
-      <BackgroundImage src={img} alt='Card Image' />
+      <BackgroundImage src={img} alt='Card Image' isHidden={isHidden} />
       <SvgWrapper
         style={{
           width: '100%',

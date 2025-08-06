@@ -13,11 +13,15 @@ export const BackgroundWrapper = styled.div`
   position: relative;
   width: fit-content;
   height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
 `;
 
-export const BackgroundImage = styled.img`
+export const BackgroundImage = styled.img<{ isHidden: boolean }>`
   height: 100%;
-  min-width: 100%;
+  width: 100%;
+  filter: ${({ isHidden }) => (isHidden ? 'grayscale(100%)' : 'none')};
 `;
 
 export const SvgWrapper = styled.div`

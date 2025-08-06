@@ -115,7 +115,12 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
               <p>Mask point</p>
             </TypeDiv>
           )}
-          {!data.isSpotlight && <CardImage img='/assets/images/view.png' />}
+          {!data.isSpotlight && (
+            <CardImage
+              img='/assets/images/view.png'
+              isHidden={!!data.isHidden}
+            />
+          )}
           {data.hasCollapsedChildren && (
             <ChildrenNumber
               onClick={(e) => {
