@@ -16,13 +16,32 @@ export interface ITreeData {
   toggleHideNodes: (nodeId: string) => void;
   parentIsHidden: boolean;
   isSelected: boolean;
+  color: string;
 }
 
 export const treeData = [
   { id: '1', label: 'Start', parent: null, isMain: true },
-  { id: '2', label: 'Child 1', parent: '1', isMaskPoint: true },
-  { id: '3', label: 'Child 2', parent: '1', isMaskPoint: true },
-  { id: '4', label: 'Child 3', parent: '1', isMaskPoint: true },
+  {
+    id: '2',
+    label: 'Child 1',
+    parent: '1',
+    isMaskPoint: true,
+    color: 'rgba(255, 0, 123, 1)',
+  },
+  {
+    id: '3',
+    label: 'Child 2',
+    parent: '1',
+    isMaskPoint: true,
+    color: 'rgba(68, 0, 255, 1)',
+  },
+  {
+    id: '4',
+    label: 'Child 3',
+    parent: '1',
+    isMaskPoint: true,
+    color: 'rgba(225, 255, 0, 1)',
+  },
   {
     id: '5',
     label: 'Natural Park',

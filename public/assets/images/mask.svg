@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="1366pt" height="659pt" viewBox="0 0 1366 659" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <g id="rgb(197, 82, 226)">
-    <path fill="rgb(197, 82, 226)" stroke="rgb(197, 82, 226)" stroke-width="1" opacity="1.00"
-      d="M 1596 679 L 2267 648 L 2844 689 L 2840 553 L 2369 506 L 1708 553 L 1708 614 L 1600 621 Z" />
-  </g>
-  <g id="rgb(204, 247, 114)">
-    <path fill="rgb(204, 247, 114)" stroke="rgb(204, 247, 114)" stroke-width="1" opacity="1.00"
-      d="M 871 1238 L 1542 1255 L 2203 1235 L 2203 1093 L 1790 1082 L 1112 1082 L 1108 1174 L 878 1177 Z" />
-  </g>
-  <g id="rgb(76, 12, 117)">
-    <path fill="rgb(76, 12, 117)" stroke="rgb(76, 12, 117)" stroke-width="1" opacity="1.00"
-      d="M 3450 567 L 3450 703 L 2918 689 L 2932 557 Z" />
-  </g>
-
-  <!-- Novos paths convertidos -->
-  <g id="novas-areas" fill="rgba(255, 0, 123, 1)" stroke="rgba(255, 0, 123, 1)" stroke-width="1">
+  <g id="areas">
     <path fill="rgba(255, 0, 123, 1)" stroke="rgba(255, 0, 123, 1)" stroke-width="1" d="M 645 402 L 646 365 L 669 356 L 684 361 L 685 397 L 659 412 Z" />
-    <path fill="rgba(255, 0, 123, 1)" stroke="rgba(255, 0, 123, 1)" stroke-width="1" d="M 709 372 L 708 341 L 731 327 L 746 333 L 746 368 L 722 380 Z" />
-    <path fill="rgba(255, 0, 123, 1)" stroke="rgba(255, 0, 123, 1)" stroke-width="1" d="M 488 379 L 486 349 L 522 331 L 534 342 L 541 374 L 504 389 Z" />
+    <path fill="rgba(68, 0, 255, 1)" stroke="rgba(68, 0, 255, 1)" stroke-width="1" d="M 709 372 L 708 341 L 731 327 L 746 333 L 746 368 L 722 380 Z" />
+    <path fill="rgba(225, 255, 0, 1)" stroke="rgba(225, 255, 0, 1)" stroke-width="1" d="M 488 379 L 486 349 L 522 331 L 534 342 L 541 374 L 504 389 Z" />
   </g>
 </svg>
