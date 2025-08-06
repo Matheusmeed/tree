@@ -21,6 +21,7 @@ export const BackgroundWrapper = styled.div`
 export const BackgroundImage = styled.img<{ isHidden: boolean }>`
   height: 100%;
   width: 100%;
+  object-fit: cover;
   filter: ${({ isHidden }) => (isHidden ? 'grayscale(100%)' : 'none')};
 `;
 
