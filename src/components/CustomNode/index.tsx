@@ -119,6 +119,7 @@ const CustomNode = ({ data }: { data: ITreeData }) => {
             <CardImage
               img='/assets/images/view.png'
               isHidden={!!data.isHidden}
+              color={data.color}
             />
           )}
           {data.hasCollapsedChildren && (
