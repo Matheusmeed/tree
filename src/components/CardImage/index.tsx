@@ -1,4 +1,4 @@
-import { useSvgData } from '../../hooks/useSvgPolygons';
+import { useSvgData } from '../../hooks/useSvgData';
 import { BackgroundImage, BackgroundWrapper, SvgWrapper } from './styles';
 
 const CardImage = ({
